@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+ 
+{% block title %}Home Page{% endblock %}
+ 
+{% block content %}
+<header class="bg-dark py-5">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center justify-content-center">
+            <div class="col-lg-8 col-xl-7 col-xxl-6">
+                <div class="my-5 text-center text-xl-start">
+                    <h1 class="display-5 fw-bolder text-white mb-2">Go to Marketplace</h1>
+                    <p class="lead fw-normal text-white-50 mb-4">You can buy or sale your NFT</p>
+                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+
+                        <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#" id="minusOneButton">Go ahead</a>
+                            <script>
+                                document.getElementById("minusOneButton").addEventListener("click", function() {
+                                    fetch('/run-marketplace')
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            console.log(data); // Log response data to console
+                                            // Change button color
+                                            document.getElementById("minusOneButton").classList.add("btn-success");
+                                            // Change button text to indicate completion
+                                            document.getElementById("minusOneButton").innerText = "Visited";
+                                        })
+                                        .catch(error => console.error('Error:', error));
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5" src="{{ url_for('static', path='/qr.png')}}" alt="..." /></div>
+            </div>
+        </div>
+    </header>
+ 
+{% endblock %}
